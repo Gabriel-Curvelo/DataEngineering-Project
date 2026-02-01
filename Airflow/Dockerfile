@@ -1,4 +1,4 @@
-FROM quay.io/astronomer/astro-runtime:12.7.1
+FROM quay.io/astronomer/astro-runtime:12.11.0
 
 COPY include/ /usr/local/airflow/include/
 
