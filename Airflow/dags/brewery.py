@@ -27,10 +27,10 @@ with DAG(
     catchup=False,
 ) as dag:
 
-    fetch_task = PythonOperator(
-        task_id="brewery_api",
-        python_callable=brewery_api,
-    )
+    # fetch_task = PythonOperator(
+    #     task_id="brewery_api",
+    #     python_callable=brewery_api,
+    # )
 
     transform_silver_task = PythonOperator(
         task_id="silver_layer",
@@ -43,4 +43,4 @@ with DAG(
     )
 
     # Define execution order: bronze → silver → gold
-    fetch_task >> transform_silver_task >> transform_gold_task
+    transform_silver_task >> transform_gold_task
