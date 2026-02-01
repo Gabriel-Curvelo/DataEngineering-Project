@@ -55,7 +55,12 @@ def main():
         f.write(content)
 
     # Start Spark session
-    spark = SparkSession.builder.appName("silverlayer").getOrCreate()
+    spark = (
+        SparkSession.builder
+        .appName("silverlayer")
+        .master("local[*]")
+        .getOrCreate()
+    )
 
     # Read JSON files and create the DataFrame
     df = spark.read.option("multiline", "true").option("encoding", "UTF-8").json(temp_input_path)
