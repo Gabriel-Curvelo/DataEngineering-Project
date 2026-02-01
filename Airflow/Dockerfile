@@ -16,16 +16,4 @@ RUN apt-get update && \
 ENV JAVA_HOME=/usr/lib/jvm/jdk-11.0.20.1+1
 ENV PATH="$JAVA_HOME/bin:$PATH"
 
-# Spark
-ENV SPARK_VERSION=3.5.1
-ENV HADOOP_VERSION=3
-
-RUN wget https://downloads.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
-    tar -xzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
-    mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} /opt/spark && \
-    rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
-
-ENV SPARK_HOME=/opt/spark
-ENV PATH=$SPARK_HOME/bin:$PATH
-
 USER astro
