@@ -58,7 +58,12 @@ def main():
     import_silver_data(s3, bucket_silver, prefix, silver_local_path)
 
     # Initialize Spark session
-    spark = SparkSession.builder.appName("goldlayer").getOrCreate()
+    spark = (
+        SparkSession.builder
+        .appName("silverlayer")
+        .master("local[*]")
+        .getOrCreate()
+    )
     df = spark.read.option("basePath", silver_local_path).parquet(silver_local_path)
 
     # Add execution_time if it does not exist
